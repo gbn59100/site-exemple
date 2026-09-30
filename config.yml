@@ -1,0 +1,50 @@
+backend:
+  name: git-gateway
+  branch: main
+
+locale: fr
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: site
+    label: "Mon site"
+    files:
+      - name: contenu
+        label: "Contenu du site"
+        file: "content/site.json"
+        fields:
+          - { label: "Nom du restaurant", name: name, widget: string }
+          - { label: "Slogan", name: tagline, widget: string }
+          - { label: "Photo d'accueil (grande image)", name: hero_image, widget: image }
+          - { label: "Titre « À propos »", name: about_title, widget: string }
+          - { label: "Texte « À propos »", name: about_text, widget: text }
+          - { label: "Photo « À propos »", name: about_image, widget: image }
+          - label: "Carte"
+            name: menu
+            widget: list
+            summary: "{{fields.category}}"
+            fields:
+              - { label: "Catégorie", name: category, widget: string }
+              - label: "Plats"
+                name: items
+                widget: list
+                summary: "{{fields.name}} – {{fields.price}}"
+                fields:
+                  - { label: "Nom", name: name, widget: string }
+                  - { label: "Description", name: description, widget: string, required: false }
+                  - { label: "Prix", name: price, widget: string }
+          - label: "Galerie photos"
+            name: gallery
+            widget: list
+            field: { label: "Photo", name: image, widget: image }
+          - label: "Horaires"
+            name: hours
+            widget: list
+            summary: "{{fields.day}}"
+            fields:
+              - { label: "Jour(s)", name: day, widget: string }
+              - { label: "Horaires", name: time, widget: string }
+          - { label: "Adresse", name: address, widget: string }
+          - { label: "Téléphone", name: phone, widget: string }
+          - { label: "Email", name: email, widget: string }
