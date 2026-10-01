@@ -1,0 +1,54 @@
+backend:
+  name: git-gateway
+  branch: main
+
+locale: fr
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: site
+    label: "Mon site"
+    files:
+      - name: contenu
+        label: "Contenu du site"
+        file: "content/site.json"
+        fields:
+          - { label: "Nom du restaurant", name: name, widget: string, required: false }
+          - { label: "Slogan", name: tagline, widget: string, required: false }
+          - { label: "Photo d'accueil (grande image)", name: hero_image, widget: image, required: false }
+          - { label: "Titre « À propos »", name: about_title, widget: string, required: false }
+          - { label: "Texte « À propos »", name: about_text, widget: text, required: false }
+          - { label: "Photo « À propos »", name: about_image, widget: image, required: false }
+          - label: "Carte"
+            name: menu
+            widget: list
+            required: false
+            summary: "{{fields.category}}"
+            fields:
+              - { label: "Catégorie", name: category, widget: string, required: false }
+              - label: "Plats"
+                name: items
+                widget: list
+                required: false
+                summary: "{{fields.name}} – {{fields.price}}"
+                fields:
+                  - { label: "Nom", name: name, widget: string, required: false }
+                  - { label: "Description", name: description, widget: string, required: false }
+                  - { label: "Prix", name: price, widget: string, required: false }
+          - label: "Galerie photos"
+            name: gallery
+            widget: list
+            required: false
+            field: { label: "Photo", name: image, widget: image, required: false }
+          - label: "Horaires"
+            name: hours
+            widget: list
+            required: false
+            summary: "{{fields.day}}"
+            fields:
+              - { label: "Jour(s)", name: day, widget: string, required: false }
+              - { label: "Horaires", name: time, widget: string, required: false }
+          - { label: "Adresse", name: address, widget: string, required: false }
+          - { label: "Téléphone", name: phone, widget: string, required: false }
+          - { label: "Email", name: email, widget: string, required: false }
